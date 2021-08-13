@@ -49,10 +49,14 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   console.log(req.body);
-  const newWorkout = await db.Workout.findByIdAndUpdate(req.params.id, {
-    $push: { exercises: req.body },
-  });
-  res.json(newWorkout);
+  if (req.body.name != "") {
+    const newWorkout = await db.Workout.findByIdAndUpdate(req.params.id, {
+      $push: { exercises: req.body },
+    });
+    res.json(newWorkout);
+  } else {
+    return;
+  }
 });
 
 module.exports = router;
