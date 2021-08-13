@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+// ended up not using the User schema....might integrate it in future updates
 const UserSchema = new Schema({
   username: {
     type: String,

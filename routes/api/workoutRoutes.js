@@ -2,6 +2,8 @@ const router = require("express").Router();
 const db = require("../../models");
 
 router.get("/", async (req, res) => {
+  // this was the original version i used but the reduce method ended up not being necessary, keeping it in commented out for future reference though
+
   // const workouts = await db.Workout.aggregate([
   //   {
   //     $addFields: {
@@ -49,6 +51,7 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   console.log(req.body);
+  // the conditional below is prevent the 'Complete' button from submitting empty forms when it is clicked
   if (req.body.name != "") {
     const newWorkout = await db.Workout.findByIdAndUpdate(req.params.id, {
       $push: { exercises: req.body },
